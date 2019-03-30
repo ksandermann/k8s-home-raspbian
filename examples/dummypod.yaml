@@ -13,7 +13,7 @@ spec:
       nfs:
         # URL for the NFS server
         server: 10.10.10.120 # Change this!
-        path: /prometheus
+        path: /debug
   # In this container, we'll mount the NFS volume
   # and write the date to a file inside it.
   containers:

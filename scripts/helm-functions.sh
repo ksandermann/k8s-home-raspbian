@@ -50,7 +50,7 @@ sleep 5
 iteration=1
 allPodsSucceeded=false
 until [[ "$allPodsSucceeded" == "true" ]] || [[ "$iteration" -ge 60 ]]; do
-    local podPhases=$(kubectl get pods --all-namespaces --include-uninitialized --selector=release=$1 -o json | jq .items[].status.phase)
+    local podPhases=$(kubectl get pods --all-namespaces --selector=release=$1 -o json | jq .items[].status.phase)
     allPodsSucceeded=true
     case "$podPhases" in
     #https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase

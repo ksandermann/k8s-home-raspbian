@@ -8,6 +8,10 @@ in repo root:
 ./docker/run.sh
 ```
 
+# NFS
+In order for NFS (I am using v3) to be handled by the Nodes, nfs-common is needed:
+
+`apt-get update && apt-get install -qy nfs-common`
 
 TODO 
 * move dockerfile to separate repo and push to dockerhub
@@ -17,3 +21,4 @@ TODO
 * plex
 * nfs-storage
 * move k8s-configuration to ansible
+* BA for prometheus

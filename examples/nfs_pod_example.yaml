@@ -1,0 +1,27 @@
+# Create a pod that reads and writes to the
+# NFS server via an NFS volume.
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-using-nfs
+  namespace: kubetools
+spec:
+  volumes:
+    - name: nfs-test01
+      persistentVolumeClaim:
+        claimName: nfs-test01
+  containers:
+    - name: app
+      image: ubuntu:16.04
+      # Mount the NFS volume in the container
+#      volumeMounts:
+#        - name: nfs-volume
+#          mountPath: /var/nfs
+      # Write to a file inside our NFS
+      command: ["/bin/sh"]
+      args: ["-c", "while true; do echo test; sleep 5; done"]
+      volumeMounts:
+        # name must match the volume name below
+        - name: nfs-test01
+          mountPath: "/mnt/nfs-test01"

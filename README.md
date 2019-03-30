@@ -22,3 +22,6 @@ TODO
 * nfs-storage
 * move k8s-configuration to ansible
 * BA for prometheus
+* ansible-tower
+* scripts to ansible
+* pyload helm chart + deployment

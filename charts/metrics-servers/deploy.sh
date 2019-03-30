@@ -4,9 +4,9 @@ IFS=$'\n\t'
 
 source ../../scripts/helm-functions.sh
 
-helm_chart='stable/nginx-ingress'
-helm_chart_version='1.4.0'
-helm_release='nginx-ingress'
+helm_chart='stable/metrics-server'
+helm_chart_version='2.5.1'
+helm_release='metrics-server'
 helm_namespace='kubetools'
 helm_values_filepath='values.yaml'
 

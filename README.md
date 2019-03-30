@@ -16,4 +16,4 @@ TODO
 * k8s-dashboard
 * plex
 * nfs-storage
-git 
+* move k8s-configuration to ansible

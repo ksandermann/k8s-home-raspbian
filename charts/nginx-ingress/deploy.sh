@@ -10,6 +10,11 @@ helm_release='nginx-ingress'
 helm_namespace='kubetools'
 helm_values_filepath='values.yaml'
 
+# create tls secret
+kubectl create secret tls sandermann.cloud --namespace=$helm_namespace --key ../../certs/sandermann.cloud.privkey.pem --cert ../../certs/sandermann.cloud.fullchain.pem --dry-run -o yaml | kubectl apply -f -
+
+
+# deploy nginx-ingress
 
 helm_dryrun $helm_chart $helm_chart_version $helm_release $helm_namespace $helm_values_filepath
 

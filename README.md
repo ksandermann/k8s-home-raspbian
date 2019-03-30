@@ -7,3 +7,13 @@ in repo root:
 ./docker/build.sh 
 ./docker/run.sh
 ```
+
+
+TODO 
+* move dockerfile to separate repo and push to dockerhub
+* prometheus
+* grafana
+* k8s-dashboard
+* plex
+* nfs-storage
+git 

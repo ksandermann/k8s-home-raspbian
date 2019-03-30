@@ -20,6 +20,7 @@ RUN apt-get update && \
     telnet \
     iputils-ping \
     jq \
+    git \
     haproxy \
     openssh-client
 

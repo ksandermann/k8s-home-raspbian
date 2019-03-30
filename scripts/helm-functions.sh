@@ -39,7 +39,7 @@ helm_delete() {
 local helm_release=$1
 helm del --purge $helm_release
 sleep 1
-kubectl get pods --all-namespaces --include-uninitialized --selector=release=$helm_release
+kubectl get pods --all-namespaces --selector=release=$helm_release
 }
 
 
@@ -86,7 +86,7 @@ until [[ "$allPodsSucceeded" == "true" ]] || [[ "$iteration" -ge 60 ]]; do
 
 done
 
-kubectl get pods --all-namespaces --include-uninitialized --selector=release=$1
+kubectl get pods --all-namespaces --selector=release=$1
 
 if [[ "$iteration" -ge 60 ]]; then
     echo "ERROR: Not all pods of helm release $1 started successfully!"

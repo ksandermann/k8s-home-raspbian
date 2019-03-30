@@ -35,14 +35,15 @@ args:
   - --logtostderr
 # enable this if you have self-signed certificates, see: https://github.com/kubernetes-incubator/metrics-server
   - --kubelet-insecure-tls
+  - --kubelet-preferred-address-types=InternalIP
 
 resources:
   requests:
     cpu: 100m
     memory: 256Mi
   limits:
-    cpu: 250m
-    memory: 256Mi
+    cpu: 500m
+    memory: 512Mi
 
 nodeSelector: {}
 

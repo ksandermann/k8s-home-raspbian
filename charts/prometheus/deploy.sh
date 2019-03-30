@@ -10,6 +10,7 @@ helm_release='prometheus'
 helm_namespace='kubetools'
 helm_values_filepath='values.yaml'
 
+kubectl apply -f ./manifests --namespace=$helm_namespace
 
 helm_dryrun $helm_chart $helm_chart_version $helm_release $helm_namespace $helm_values_filepath
 

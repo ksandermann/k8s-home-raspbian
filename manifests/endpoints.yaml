@@ -1,0 +1,50 @@
+kind: Endpoints
+apiVersion: v1
+metadata:
+  name: nas-http-interface
+  namespace: kubetools
+subsets:
+  - addresses:
+      - ip: 10.10.10.120
+    ports:
+      - port: 8080
+        name: nas-http-interface
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: nas-http-interface
+  namespace: kubetools
+spec:
+  ports:
+    - name: nas-http-interface
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+      nodePort: 0
+  selector: {}
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app: nas
+  name: qnap
+  namespace: kubetools
+spec:
+  rules:
+    - host: qnap.sandermann.cloud
+      http:
+        paths:
+          - backend:
+              serviceName: nas-http-interface
+              servicePort: 8080
+            path: /
+  tls:
+    - hosts:
+        - qnap.sandermann.cloud
+      secretName: sandermann.cloud

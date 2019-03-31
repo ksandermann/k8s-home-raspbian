@@ -20,3 +20,12 @@ TODO
 * ansible-tower
 * scripts to ansible
 * pyload helm chart + deployment
+* nextcloud
+* architecture documentation
+  * picture
+  * hardware
+  * OS
+  * pricing
+  * background
+* fritzbox tls termination through ingress
+* ansible script raspbian /debian bootstrapping

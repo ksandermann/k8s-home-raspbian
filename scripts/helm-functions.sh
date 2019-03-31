@@ -18,6 +18,24 @@ helm upgrade $helm_release $helm_chart \
   -f $helm_values_filepath
 }
 
+helm_deploy_recreate_pods() {
+local helm_chart=$1
+local helm_chart_version=$2
+local helm_release=$3
+local helm_namespace=$4
+local helm_values_filepath=$5
+
+kubectl config set-context $(kubectl config current-context) --namespace=$helm_namespace
+pwd
+echo $helm_values_filepath
+helm upgrade $helm_release $helm_chart \
+  --install \
+  --recreate-pods \
+  --version $helm_chart_version \
+  --namespace $helm_namespace \
+  -f $helm_values_filepath
+}
+
 helm_dryrun() {
 local helm_chart=$1
 local helm_chart_version=$2

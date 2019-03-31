@@ -1,6 +1,7 @@
 # Chart-Adjustments
 
 I decided to simply remove the configmap-reload container from the prometheus chart and set Update.Strategy to Recreate
+as well as using --recreate-pods on helm-upgrade.
 Before, I was building the configmap-reload container myself for debian 9 aarch64, but I switched to above solution so I 
 don't need to build that anymore.
 Also, adjusting the deployment with sed seemed too dirty.
@@ -41,6 +42,6 @@ out/configmap-reload-linux-arm64: vendor configmap-reload.go $(shell $(SRCFILES)
 
 then:
 ```bash
-make
+make build
 docker build -t cfg-reload:arm64 .
 ```

@@ -294,6 +294,12 @@ server:
     ##
     annotations:
       kubernetes.io/ingress.class: nginx
+      # type of authentication
+      nginx.ingress.kubernetes.io/auth-type: basic
+      # name of the secret that contains the user/password definitions
+      nginx.ingress.kubernetes.io/auth-secret: prometheus-basicauth
+      # message to display with an appropiate context why the authentication is required
+      nginx.ingress.kubernetes.io/auth-realm: "No trespassing"
     #   kubernetes.io/tls-acme: 'true'
 
     ## Prometheus server Ingress additional labels
@@ -734,19 +740,14 @@ serverFiles:
 # adds additional scrape configs to prometheus.yml
 # must be a string so you have to add a | after extraScrapeConfigs:
 # example adds prometheus-blackbox-exporter scrape config
-extraScrapeConfigs:
-# - job_name: 'prometheus-blackbox-exporter'
-#   metrics_path: /probe
-#   params:
-#     module: [http_2xx]
-#   static_configs:
-#     - targets:
-#       - https://example.com
-#   relabel_configs:
-#     - source_labels: [__address__]
-#       target_label: __param_target
-#     - source_labels: [__param_target]
-#       target_label: instance
-#     - target_label: __address__
-#       replacement: prometheus-blackbox-exporter:9115
+extraScrapeConfigs: |-
+  - job_name: 'k8s-home-machines'
+    static_configs:
+    - targets:
+      - 10.10.10.101:9100 #k8s-home-master1
+      - 10.10.10.102:9100 #k8s-home-master2
+      - 10.10.10.103:9100 #k8s-home-master3
+      - 10.10.10.104:9100 #k8s-home-node1
+      - 10.10.10.105:9100 #k8s-home-node2
+      - 10.10.10.140:9100 #k8s-home-proxy(1)
 

@@ -1,7 +1,6 @@
 #!/bin/bash
-
-
-
+set -euo pipefail
+IFS=$'\n\t'
 
 #set roles to nodes
 kubectl label node k8s-home-node1 node-role.kubernetes.io/node=node

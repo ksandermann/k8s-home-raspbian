@@ -22,7 +22,8 @@ RUN apt-get update && \
     jq \
     git \
     haproxy \
-    openssh-client
+    openssh-client \
+    apache2-utils
 
 #Install Kubectl
 RUN sudo apt-get update && sudo apt-get install -y apt-transport-https

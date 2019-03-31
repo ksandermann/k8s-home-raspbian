@@ -1,4 +1,6 @@
 #!/bin/bash
+set -euo pipefail
+IFS=$'\n\t'
 
 haproxy -c -f ../configs/haproxy.cfg
 echo "sleeping 5 sec"

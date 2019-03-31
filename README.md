@@ -13,19 +13,19 @@ In order for NFS (I am using v3) to be handled by the Nodes, nfs-common is neede
 
 `apt-get update && apt-get install -qy nfs-common`
 
-TODO 
-* move dockerfile to separate repo and push to dockerhub
-* grafana
-* plex
-* ansible-tower
-* scripts to ansible
-* pyload helm chart + deployment
-* nextcloud
-* architecture documentation
-  * picture
-  * hardware
-  * OS
-  * pricing
-  * background
-* fritzbox tls termination through ingress
-* ansible script raspbian /debian bootstrapping
+# TODO 
+* [ ] move dockerfile to separate repo and push to dockerhub
+* [ ] grafana
+* [ ] plex
+* [ ] ansible-tower
+* [ ] scripts to ansible
+* [ ] pyload helm chart + deployment
+* [ ] nextcloud
+* [ ] architecture documentation
+  * [ ] picture
+  * [ ] hardware
+  * [ ] OS
+  * [ ] pricing
+  * [ ] background
+* [ ] fritzbox tls termination through ingress
+* [ ] ansible script raspbian /debian bootstrapping

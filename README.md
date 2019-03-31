@@ -29,3 +29,4 @@ In order for NFS (I am using v3) to be handled by the Nodes, nfs-common is neede
   * [ ] background
 * [ ] fritzbox tls termination through ingress
 * [ ] ansible script raspbian /debian bootstrapping
+* [ ] prometheus: storage.tsdb.retention.size

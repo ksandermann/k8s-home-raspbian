@@ -15,13 +15,8 @@ In order for NFS (I am using v3) to be handled by the Nodes, nfs-common is neede
 
 TODO 
 * move dockerfile to separate repo and push to dockerhub
-* prometheus
 * grafana
-* k8s-dashboard
 * plex
-* nfs-storage
-* move k8s-configuration to ansible
-* BA for prometheus
 * ansible-tower
 * scripts to ansible
 * pyload helm chart + deployment

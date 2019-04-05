@@ -1,0 +1,47 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pyload
+  namespace: apps
+spec:
+  selector:
+    matchLabels:
+      app: plex
+  template:
+    metadata:
+      labels:
+        app: plex
+    spec:
+      containers:
+      - image: ksandermann/pyload-aarch64:2019-04-05
+        imagePullPolicy: IfNotPresent
+        name: pms
+        ports:
+          - name: http
+            containerPort: 32400
+        env:
+          - name: TZ
+            value: "Europe/Berlin"
+          - name: PMS_INTERNAL_ADDRESS
+            value: https://plex.sandermann.cloud:443
+        volumeMounts:
+          - mountPath: /media
+            name: media
+          - mountPath: /root/Library
+            name: plex-appdata
+      volumes:
+        - name: media
+          persistentVolumeClaim:
+            claimName: plex-media
+        - name: plex-appdata
+          persistentVolumeClaim:
+            claimName: plex-appdata
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - k8s-home-node1

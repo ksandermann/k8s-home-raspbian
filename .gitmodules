@@ -1,3 +1,6 @@
 [submodule "charts/haproxy-exporter/helm-chart-haproxy-exporter"]
 	path = charts/haproxy-exporter/helm-chart-haproxy-exporter
 	url = git@github.com:ksandermann/helm-chart-haproxy-exporter.git
+[submodule "charts/plex/chart/kube-plex"]
+	path = charts/plex/chart/kube-plex
+	url = git@github.com:munnerz/kube-plex.git

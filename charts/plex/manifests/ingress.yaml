@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+  labels:
+    app: docker-plex
+  name: docker-plex
+  namespace: apps
+spec:
+  rules:
+  - host: plex.sandermann.cloud
+    http:
+      paths:
+      - backend:
+          serviceName: docker-plex
+          servicePort: 32400
+        path: /
+  tls:
+  - hosts:
+    - plex.sandermann.cloud
+    secretName: sandermann.cloud

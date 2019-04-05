@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: docker-plex
+  name: docker-plex
+  namespace: apps
+spec:
+  ports:
+  - name: http
+    port: 32400
+    protocol: TCP
+    targetPort: 32400
+  - name: https
+    port: 32443
+    protocol: TCP
+    targetPort: 32443
+  - name: debug
+    port: 32600
+    protocol: TCP
+    targetPort: 32600
+  selector:
+    app: docker-plex
+  sessionAffinity: None
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: docker-plex
+  name: docker-plex2
+  namespace: apps
+spec:
+  ports:
+    - nodePort: 32112
+      port: 32400
+      protocol: TCP
+      targetPort: 32400
+  selector:
+    app: docker-plex
+  type: NodePort

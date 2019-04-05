@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-docker-debug-library
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 20Gi
+  volumeName: "plex-docker-debug-library"
+
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: plex-docker-debug-media
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 20Gi
+  volumeName: "plex-docker-debug-media"

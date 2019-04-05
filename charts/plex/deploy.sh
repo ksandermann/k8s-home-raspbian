@@ -13,9 +13,13 @@ helm_values_filepath='values.yaml'
 #copy tls secret to namespace
 kubectl get secret sandermann.cloud --namespace=kubetools --export -o yaml | kubectl apply --namespace=$helm_namespace -f -
 
+#kubectl apply -f ./manifests --namespace=$helm_namespace
+#
+#
+#helm_dryrun $helm_chart $helm_chart_version $helm_release $helm_namespace $helm_values_filepath
+#
+#helm_deploy $helm_chart $helm_chart_version $helm_release $helm_namespace $helm_values_filepath
+#
+#helm_check_all_pods_successful $helm_release
 
-helm_dryrun $helm_chart $helm_chart_version $helm_release $helm_namespace $helm_values_filepath
-
-helm_deploy $helm_chart $helm_chart_version $helm_release $helm_namespace $helm_values_filepath
-
-helm_check_all_pods_successful $helm_release
+kubectl apply -f manifests

@@ -21,6 +21,8 @@ In order for NFS (I am using v3) to be handled by the Nodes, nfs-common is neede
 * [ ] scripts to ansible
 * [ ] pyload helm chart + deployment
 * [ ] nextcloud
+* [ ] docker builder-pattern
+* [ ] docker version args
 * [ ] architecture documentation
   * [ ] picture
   * [ ] hardware

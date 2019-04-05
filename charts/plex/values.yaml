@@ -2,19 +2,19 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 image:
-  repository: plexinc/pms-docker
-  tag: 1.10.1.4602-f54242b6b
+  repository: jaymoulin/plex
+  tag: 1.15.2-arm64v8
   pullPolicy: IfNotPresent
 
 kubePlex:
   enabled: true
   image:
-    repository: quay.io/munnerz/kube-plex
-    tag: latest
+    repository: ksandermann/kube-plex
+    tag: arm64
     pullPolicy: Always
 
 # Override this with the plex claim token from plex.tv/claim
-claimToken: ""
+claimToken: "***"
 
 # Set the timezone of the plex server
 timezone: Europe/Berlin
@@ -41,17 +41,18 @@ service:
   # externalTrafficPolicy: Cluster
 
 ingress:
-  enabled: true
+  enabled: false
   # Used to create an Ingress record.
   hosts:
-    - plex.sandermann.cloud
+    - chart-example.local
   annotations:
-    kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
+  # kubernetes.io/ingress.class: nginx
+  # kubernetes.io/tls-acme: "true"
   tls:
-    - secretName: sandermann.cloud
-      hosts:
-        - plex.sandermann.cloud
+  # Secrets must be manually created in the namespace.
+  # - secretName: chart-example-tls
+  #   hosts:
+  #     - chart-example.local
 
 rbac:
   create: true
@@ -60,7 +61,7 @@ rbac:
   ## serviceAccountName: ""
 
 nodeSelector:
-  #beta.kubernetes.io/arch: amd64
+  beta.kubernetes.io/arch: arm64
 
 persistence:
   transcode:
@@ -71,37 +72,37 @@ persistence:
     # Optionally specify a storage class to be used for the transcode directory.
     # If not specified and claimName is not specified, the default storage
     # class will be used.
-    storageClass: ""
+    storageClass: "plex-transcode-nfs"
     # subPath: some-subpath
     # The requested size of the volume to be used when creating a
     # PersistentVolumeClaim.
-    size: 20Gi
+    #size: 20Gi
   data:
     # Optionally specify claimName to manually override the PVC to be used for
     # the data directory. If claimName is specified, storageClass and size are
     # ignored.
-    ## claimName: "plex-data-pvc"
+    claimName: "plex-data-nfs"
     # Optionally specify a storage class to be used for the data directory.
     # If not specified and claimName is not specified, the default storage
     # class will be used.
-    storageClass: ""
+    # storageClass: ""
     # subPath: some-subpath
     # The requested size of the volume to be used when creating a
     # PersistentVolumeClaim.
-    size: 40Gi
+    #size: 40Gi
   config:
     # Optionally specify claimName to manually override the PVC to be used for
     # the config directory. If claimName is specified, storageClass and size
     # are ignored.
-    ## claimName: "plex-config-pvc"
+    claimName: "plex-config-nfs"
     # Optionally specify a storage class to be used for the config directory.
     # If not specified and claimName is not specified, the default storage
     # class will be used.
     # subPath: some-subpath
-    storageClass: ""
+    #storageClass: ""
     # The requested size of the volume to be used when creating a
     # PersistentVolumeClaim.
-    size: 20Gi
+    #size: 20Gi
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
@@ -113,4 +114,4 @@ resources: {}
   #  memory: 128Mi
   # requests:
   #  cpu: 100m
-  #  memory: 128Mi
+#  memory: 128Mi

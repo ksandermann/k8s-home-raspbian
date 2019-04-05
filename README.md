@@ -15,8 +15,9 @@ In order for NFS (I am using v3) to be handled by the Nodes, nfs-common is neede
 
 # TODO 
 * [ ] move dockerfile to separate repo and push to dockerhub
-* [ ] grafana
-* [ ] plex
+* [X] grafana
+* [X] plex
+* [ ] plex timezone
 * [ ] ansible-tower
 * [ ] scripts to ansible
 * [ ] pyload helm chart + deployment

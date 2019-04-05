@@ -1,45 +1,47 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: docker-plex
+  name: plex
   namespace: apps
 spec:
   selector:
     matchLabels:
-      app: docker-plex
+      app: plex
   template:
     metadata:
       labels:
-        app: docker-plex
+        app: plex
     spec:
-      nodeName: k8s-home-node1
       containers:
-      - image: jaymoulin/plex:1.15.2-aarch64
+      - image: jaymoulin/plex:1.15.3-aarch64
         imagePullPolicy: IfNotPresent
-        name: docker-plex
+        name: pms
         ports:
-          - name: debug
-            containerPort: 32600
           - name: http
             containerPort: 32400
-          - name: https
-            containerPort: 32443
         env:
           - name: TZ
             value: "Europe/Berlin"
-          - name: PLEX_CLAIM
-            value: "***"
           - name: PMS_INTERNAL_ADDRESS
             value: https://plex.sandermann.cloud:443
         volumeMounts:
           - mountPath: /media
-            name: debug-media
+            name: media
           - mountPath: /root/Library
-            name: debug-library
+            name: plex-appdata
       volumes:
-        - name: debug-media
+        - name: media
           persistentVolumeClaim:
-            claimName: plex-docker-debug-media
-        - name: debug-library
+            claimName: plex-media
+        - name: plex-appdata
           persistentVolumeClaim:
-            claimName: plex-docker-debug-library
+            claimName: plex-appdata
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+              - matchExpressions:
+                  - key: kubernetes.io/hostname
+                    operator: In
+                    values:
+                      - k8s-home-node1

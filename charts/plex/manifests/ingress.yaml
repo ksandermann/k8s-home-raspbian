@@ -4,8 +4,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
   labels:
-    app: docker-plex
-  name: docker-plex
+    app: plex
+  name: plex
   namespace: apps
 spec:
   rules:
@@ -13,7 +13,7 @@ spec:
     http:
       paths:
       - backend:
-          serviceName: docker-plex
+          serviceName: plex
           servicePort: 32400
         path: /
   tls:

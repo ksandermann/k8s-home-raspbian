@@ -1,4 +1,5 @@
 *.iml
 *.DS_Store
 *.pem
+certs/*
 charts/prometheus/auth

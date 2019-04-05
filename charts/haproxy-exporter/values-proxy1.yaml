@@ -1,0 +1,25 @@
+image:
+  repository: ksandermann/haproxy-exporter
+  tag: v0.10.0arm64
+  pullPolicy: IfNotPresent
+pod:
+  annotations:
+  args:
+    - "--haproxy.scrape-uri=http://10.10.10.141:9000/haproxy_stats?stats;csv"
+service:
+  type: ClusterIP
+  port: 9101 #must match prometheus.io/port
+  annotations:
+    prometheus.io/path: "/metrics"
+    prometheus.io/port: "9101"
+    prometheus.io/scrape: "true"
+resources:
+  requests:
+    memory: 128Mi
+    cpu: 100m
+  limits:
+    memory: 256Mi
+    cpu: 250m
+
+ingress:
+  enabled: false

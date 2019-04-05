@@ -749,5 +749,6 @@ extraScrapeConfigs: |-
       - 10.10.10.103:9100 #k8s-home-master3
       - 10.10.10.104:9100 #k8s-home-node1
       - 10.10.10.105:9100 #k8s-home-node2
-      - 10.10.10.140:9100 #k8s-home-proxy(1)
+      - 10.10.10.141:9100 #k8s-home-proxy1
+      - 10.10.10.142:9100 #k8s-home-proxy2
 

@@ -9,7 +9,8 @@ kubectl label node k8s-home-node2 node-role.kubernetes.io/node=node
 #create ns and users
 kubectl apply -f ../manifests/
 
-
+echo "sleeping 5 sec for namespaces to be created successfully"
+sleep 5
 
 #install helm
 helm init  \
